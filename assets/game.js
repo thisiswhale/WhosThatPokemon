@@ -1,4 +1,6 @@
 // Initialize variable
+
+
 var win = 0;
 var loss = 0;
 var tries = 9;
@@ -7,76 +9,89 @@ var guesses = []; //stored guesses
 var correct = 0; //Count correct guesses
 var progressWord = [];
 
-var list = ['cat', 'hey', 'dog'];
-var previousGuess = null;
+var list = ['cat', 'zebra', 'elephant'];
 
 function chooseWord() {
-
     return list[Math.floor(Math.random() * list.length)];
-
 }
 
 var magicWord = chooseWord();
 console.log("Computer word is: " + magicWord);
 
-
-var progressWord = [];
-
-for (var i = 0; i < magicWord.length; i++) {
-    progressWord.push('_');
+//show the "_"
+function start() {
+    for (var i = 0; i < magicWord.length; i++) {
+        progressWord[i] = "_";
+    }
+    var x = progressWord.join(" ");
+    document.getElementById("answer").innerHTML = x;
 }
+
+start();
 
 document.onkeydown = function(event) {
 
+    //choose a letter, loss a try, and update a try
     var guess = event.key.toLowerCase();
-    //take out 1 tries and updates tries after key pressed
     tries -= 1;
     document.getElementById("tries").textContent = tries;
 
     //log in history of guess words
     guesses.push(guess);
-    console.log("History letter " + guesses);
+    document.getElementById("letterGuessed").innerHTML = guesses.join(" ")
 
-    console.log("I just typed a letter: " + guess);
-    //x.indexOf("y") returns a index position
-    //when no guess letter match magicWord, then its -1 (false)
-    var checkIndex = 0;
+    checkLetter(guess);
+    checkLives();
 
-    // if the character is found
-    if (checkIndex = magicWord.indexOf(guess)) != -1) {
-    for (var i = 0; i < wordLength; i++) { // loop on all characters
-        if (chosenWord[i] == keyString) // if this is an occurance
-            progressWord[i] = chosenWord[i];
+}
+
+function checkLetter(letterGuess) {
+    // True when letter is found in magicWord else its -1 (false)
+    if (magicWord.indexOf(letterGuess) != -1) {
+
+        // check each letter
+        for (var i = 0; i < magicWord.length; i++) {
+
+            //	if guess letter match a magic word, it will appear
+            if (magicWord[i] === letterGuess) {
+                progressWord[i] = magicWord[i];
+                document.getElementById("answer").innerHTML = progressWord.join(" ");
+            }
+        }
     }
 }
-else {
-    // wrong choice
-}
 
-//Search letter in magicWord at ith index
-for (var i = 0; i < magicWord.length; i++) {
-    if (magicWord[i] === guess) {
-        correct += 1;
-        console.log(correct);
+function checkLives() {
+    //Win when there are no '_' left else you lose
+    if (progressWord.indexOf('_') == -1) {
+        win++;
+        document.getElementById("win").textContent = win;
+        //magicWord = chooseWord();
+        reset();
+        console.log(magicWord);
+
+    } else if (tries <= 0) {
+        loss++;
+        document.getElementById("loss").textContent = loss;
+        reset();
+        console.log(magicWord);
+        //magicWord = chooseWord();
+
     }
 }
-//To Win
-// 	for(i=0;i<toGuess.length;++i) {
-// 		if(guess.indexOf(toGuess.charAt(i)) === -1) return false
-// 	}
-// 	return true
-// }
 
-//gameover
-if (tries === 0) {
-    loss += 1;
-    document.getElementById("loss").textContent = loss;
+function reset() {
+    magicWord = chooseWord();
+    tries = 9;
+    document.getElementById("tries").textContent = tries;
+    progressWord = [];
+        guesses = [];
+            document.getElementById("letterGuessed").innerHTML = guesses.join(" ")
+    start();
+
+    //magicWord = chooseWord();
 }
 
-
-}
 
 // THINGS TO DO
-// -MAKE WINNER
-// -DISPLAY TYPED WORD
 //-RESET GAME
