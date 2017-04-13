@@ -1,0 +1,28 @@
+
+/*@font-face {
+    font-family: pokemonTheme;
+    src: url(PokemonGB.ttf);
+}*/
+
+*{
+	/*font-family: pokemonTheme;*/
+  	box-sizing: border-box;
+}
+
+
+.title{
+	font-size:50px;
+}
+/*
+.info{
+	font-size: 60px;
+}
+
+#tries,#win,#loss{
+	font-size:60px;
+}*/
+
+.box{
+	font-size:70px;
+}
+

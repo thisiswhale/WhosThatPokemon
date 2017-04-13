@@ -11,6 +11,12 @@ var progressWord = [];
 
 var list = ['cat', 'zebra', 'elephant'];
 
+//background audio
+//var bgMusic = new Audio('assets/Pokemon8bit.mp3');
+//bgMusic.play();
+//typing keyboard audio
+var keybrType = new Audio('assets/keyboard.wav');
+
 function chooseWord() {
     return list[Math.floor(Math.random() * list.length)];
 }
@@ -31,10 +37,9 @@ start();
 
 document.onkeydown = function(event) {
 
-    //choose a letter, loss a try, and update a try
+    //choose a letter
+    //keybrType.play();
     var guess = event.key.toLowerCase();
-    tries -= 1;
-    document.getElementById("tries").textContent = tries;
 
     //log in history of guess words
     guesses.push(guess);
@@ -52,12 +57,18 @@ function checkLetter(letterGuess) {
         // check each letter
         for (var i = 0; i < magicWord.length; i++) {
 
-            //	if guess letter match a magic word, it will appear
+            //when guess letter match a magic word, it will appear screen
             if (magicWord[i] === letterGuess) {
                 progressWord[i] = magicWord[i];
                 document.getElementById("answer").innerHTML = progressWord.join(" ");
             }
         }
+    }
+
+    else{
+    	console.log("I type wrong letter");
+    	tries -= 1; 
+    	document.getElementById("tries").textContent = tries;
     }
 }
 
