@@ -3,19 +3,23 @@
 
 <head>
     <meta charset=UTF-8>
-    	<link rel="stylesheet" type="text/css" href="assets/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/style.css">
     <title>Hangman Game</title>
 </head>
 
 <body>
+    <h1 class="title">Who's that Pokemon!?</h1>
+    <div class="box">
+        <h2 class="info">Letter guessed: <br><br><span id="letterGuessed"></span> </h2>
+        <h3 class="info" id="answer"></h3>
+    </div>
 
-    <h1>Who's is this!!</h1>
-    <h2>Letter guessed: <span id="letterGuessed"></span> </h2>
-    <h3 class="info" id="answer"></h3>
     <div>
-    	<h3 class="info">Lives:<span id="tries">9</span></h3> 
-    	<h3 class="info">Win:<span id="win">0</span>&emsp;&emsp;Loss: <span id="loss">0</span> </h3>
-	</div>
-    <script src="assets/game.js"></script>
+        <div class="box">
+            <h3 class="info">Lives:<span id="tries">9</span></h3>
+            <h3 class="info">Win:<span id="win">0</span>&emsp;&emsp;Loss: <span id="loss">0</span> </h3>
+        </div>
+        <script src="assets/game.js"></script>
 </body>
+
 </html>

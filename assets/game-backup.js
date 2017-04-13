@@ -5,49 +5,18 @@ var tries = 9;
 var guess; //Guess
 var guesses = []; //stored guesses
 var correct = 0; //Count correct guesses
-var rand;
 var progressWord = [];
 
+var list = ['cat', 'zebra', 'elephant'];
 
 //background audio
-var bgMusic = new Audio('assets/Pokemon8bit.mp3');
-bgMusic.play();
+//var bgMusic = new Audio('assets/Pokemon8bit.mp3');
+//bgMusic.play();
 //typing keyboard audio
 var keybrType = new Audio('assets/keyboard.wav');
 
-
-function pokemon(title,sound){
-	this.title = title;
-	this.sound = sound; 
-}
-
-var bulbasaur = new Audio('assets/001 - Bulbasaur.wav');
-var charmander = new Audio('assets/004 - Charmander.wav');
-var squirtle = new Audio('assets/007 - Squirtle.wav');
-var butterfree = new Audio('assets/012 - butterfree.wav');
-var pidgey = new Audio('assets/016 - Pidgey.wav');
-var clefable = new Audio('assets/036 - Clefable.wav');
-var zubat = new Audio('assets/041 - Zubat.wav');
-var gloom = new Audio('assets/044 - Gloom.wav');
-var machop = new Audio('assets/066 - Machop.wav');
-
-var pokemonList = {
-	pokemon1: new pokemon("bulbasaur", bulbasaur),
-	pokemon2: new pokemon("charmander", charmander), 
-	pokemon3: new pokemon("squirtle", squirtle),
-	pokemon4: new pokemon("butterfree", butterfree),
-	pokemon5: new pokemon("pidgey", pidgey),
-	pokemon6: new pokemon("clefable", clefable),
-	pokemon7: new pokemon("zubat", zubat),
-	pokemon8: new pokemon("gloom", gloom),
-	pokemon9: new pokemon("machop", machop),
-};
-
-var list = [pokemonList.pokemon1, pokemonList.pokemon2, pokemonList.pokemon3,pokemonList.pokemon4, pokemonList.pokemon5, pokemonList.pokemon6, pokemonList.pokemon7, pokemonList.pokemon8,pokemonList.pokemon8];
-
 function chooseWord() {
-	rand = Math.floor(Math.random() * list.length);
-    return list[rand].title;
+    return list[Math.floor(Math.random() * list.length)];
 }
 
 var magicWord = chooseWord();
@@ -67,12 +36,12 @@ start();
 document.onkeydown = function(event) {
 
     //choose a letter
-    keybrType.play();
+    //keybrType.play();
     var guess = event.key.toLowerCase();
 
     //log in history of guess words
     guesses.push(guess);
-    document.getElementById("letterGuessed").innerHTML = guesses.join(" ");
+    document.getElementById("letterGuessed").innerHTML = guesses.join(" ")
 
     checkLetter(guess);
     checkLives();
@@ -106,17 +75,16 @@ function checkLives() {
     if (progressWord.indexOf('_') == -1) {
         win++;
         document.getElementById("win").textContent = win;
-        list[rand].sound.play();
-        reset();                
+        //magicWord = chooseWord();
+        reset();
         console.log(magicWord);
 
-    //lose
     } else if (tries <= 0) {
         loss++;
         document.getElementById("loss").textContent = loss;
         reset();
         console.log(magicWord);
-
+        //magicWord = chooseWord();
 
     }
 }

@@ -1,28 +1,33 @@
 
-/*@font-face {
+@font-face {
     font-family: pokemonTheme;
     src: url(PokemonGB.ttf);
-}*/
+}
 
 *{
-	/*font-family: pokemonTheme;*/
+	font-family: pokemonTheme;
   	box-sizing: border-box;
 }
 
+body{
+	margin:5% 20% 20% 20%;
+		background-image: url("pokemonsleeping-background.jpg");
+		/*background-repeat: no-repeat;*/
+		background-size: 1200px; 
 
-.title{
-	font-size:50px;
+	text-align:center;
+	border: 2px solid black;
+	border-radius: 10px;
 }
-/*
 .info{
-	font-size: 60px;
+	font-size: 30px;
 }
-
-#tries,#win,#loss{
-	font-size:60px;
-}*/
+.title{
+	font-size:45px;
+}
 
 .box{
-	font-size:70px;
+	font-size:40px;
+
 }
 
