@@ -16,15 +16,15 @@ bgMusic.play();
 var keybrType = new Audio('assets/keyboard.wav');
 
 
-function pokemon(title,sound){
-	this.title = title;
-	this.sound = sound; 
+//list of pokemon and its sound
+function pokemon(title, sound) {
+    this.title = title;
+    this.sound = sound;
 }
-
 var bulbasaur = new Audio('assets/001 - Bulbasaur.wav');
 var charmander = new Audio('assets/004 - Charmander.wav');
 var squirtle = new Audio('assets/007 - Squirtle.wav');
-var butterfree = new Audio('assets/012 - butterfree.wav');
+var butterfree = new Audio('assets/012 - Butterfree.wav');
 var pidgey = new Audio('assets/016 - Pidgey.wav');
 var clefable = new Audio('assets/036 - Clefable.wav');
 var zubat = new Audio('assets/041 - Zubat.wav');
@@ -32,21 +32,22 @@ var gloom = new Audio('assets/044 - Gloom.wav');
 var machop = new Audio('assets/066 - Machop.wav');
 
 var pokemonList = {
-	pokemon1: new pokemon("bulbasaur", bulbasaur),
-	pokemon2: new pokemon("charmander", charmander), 
-	pokemon3: new pokemon("squirtle", squirtle),
-	pokemon4: new pokemon("butterfree", butterfree),
-	pokemon5: new pokemon("pidgey", pidgey),
-	pokemon6: new pokemon("clefable", clefable),
-	pokemon7: new pokemon("zubat", zubat),
-	pokemon8: new pokemon("gloom", gloom),
-	pokemon9: new pokemon("machop", machop),
+    pokemon1: new pokemon("bulbasaur", bulbasaur),
+    pokemon2: new pokemon("charmander", charmander),
+    pokemon3: new pokemon("squirtle", squirtle),
+    pokemon4: new pokemon("butterfree", butterfree),
+    pokemon5: new pokemon("pidgey", pidgey),
+    pokemon6: new pokemon("clefable", clefable),
+    pokemon7: new pokemon("zubat", zubat),
+    pokemon8: new pokemon("gloom", gloom),
+    pokemon9: new pokemon("machop", machop),
 };
 
-var list = [pokemonList.pokemon1, pokemonList.pokemon2, pokemonList.pokemon3,pokemonList.pokemon4, pokemonList.pokemon5, pokemonList.pokemon6, pokemonList.pokemon7, pokemonList.pokemon8,pokemonList.pokemon8];
+var list = [pokemonList.pokemon1, pokemonList.pokemon2, pokemonList.pokemon3, pokemonList.pokemon4, pokemonList.pokemon5, pokemonList.pokemon6, pokemonList.pokemon7, pokemonList.pokemon8, pokemonList.pokemon8];
 
+//function to choose random word
 function chooseWord() {
-	rand = Math.floor(Math.random() * list.length);
+    rand = Math.floor(Math.random() * list.length);
     return list[rand].title;
 }
 
@@ -62,8 +63,10 @@ function start() {
     document.getElementById("answer").innerHTML = x;
 }
 
+//start the game
 start();
 
+//typing mechanics
 document.onkeydown = function(event) {
 
     //choose a letter
@@ -92,12 +95,10 @@ function checkLetter(letterGuess) {
                 document.getElementById("answer").innerHTML = progressWord.join(" ");
             }
         }
-    }
-
-    else{
-    	console.log("I type wrong letter");
-    	tries -= 1; 
-    	document.getElementById("tries").textContent = tries;
+    } else {
+        console.log("I type wrong letter");
+        tries -= 1;
+        document.getElementById("tries").textContent = tries;
     }
 }
 
@@ -107,10 +108,10 @@ function checkLives() {
         win++;
         document.getElementById("win").textContent = win;
         list[rand].sound.play();
-        reset();                
+        reset();
         console.log(magicWord);
 
-    //lose
+        //lose
     } else if (tries <= 0) {
         loss++;
         document.getElementById("loss").textContent = loss;
@@ -126,8 +127,8 @@ function reset() {
     tries = 9;
     document.getElementById("tries").textContent = tries;
     progressWord = [];
-        guesses = [];
-            document.getElementById("letterGuessed").innerHTML = guesses.join(" ")
+    guesses = [];
+    document.getElementById("letterGuessed").innerHTML = guesses.join(" ")
     start();
 
     //magicWord = chooseWord();
